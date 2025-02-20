@@ -1,16 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class weatherSearch(models.Model):
-
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name="weather_searches",
-        null=True,
-        blank=True,
-    )
 
     city = models.CharField(max_length=100)
     temperature = models.DecimalField(max_digits=5, decimal_places=2)
