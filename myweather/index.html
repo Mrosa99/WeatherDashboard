@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="static/css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Weather Dashboard</h2>
+      <form method="GET">
+        {% csrf_token %}
+        <input
+          type="text"
+          id="city"
+          name="city"
+          placeholder="Enter city name"
+          required
+        />
+        <button type="submit">Get Weather</button>
+      </form>
+      {% if weather_data %}
+      <div>
+        <h3>Weather in {{ weather_data.name }}</h3>
+        <p>Temperature: {{ weather_data.main.temp }}°C</p>
+        <p>Condition: {{ weather_data.weather.0.description }}</p>
+        <p>Wind Speed: {{ weather_data.wind.speed }} m/s</p>
+      </div>
+      {% else %}
+      <p>No weather data available or city not found.</p>
+      {% endif %}
+    </div>
+    <footer>
+      <p><i>Project by Milton Rosa</i></p>
+    </footer>
+  </body>
+</html>

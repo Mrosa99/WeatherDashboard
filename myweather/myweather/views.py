@@ -1,23 +1,28 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.contrib.auth import views as auth_views
-from django.contrib.auth import logout
-from django.shortcuts import redirect
+import os
+import requests
+from django.shortcuts import render
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
-def sign_up(request):
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Account created successfully!")
-            return redirect("login")
-    else:
-        form = UserCreationForm()
-    return render(request, "sign_up.html", {"form": form})
+def index(request):
+    weather_data = None
+    if request.method == "GET":
+        print("Form submitted!")
+        city = request.GET.get("city")
+        print(f"City entered: {city}")
+        api_key = os.getenv("API_KEY")
+        url = (
+            f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
+        )
 
+        response = requests.get(url)
+        if response.status_code == 200:
+            weather_data = response.json()
+            print(weather_data)
 
-def log_out(request):
-    logout(request)
-    return redirect("login")
+        else:
+            weather_data = {"error": "City not found or API issue."}
+
+    return render(request, "index.html", {"weather_data": weather_data})
