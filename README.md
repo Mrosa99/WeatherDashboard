@@ -6,10 +6,9 @@ This **Weather Dashboard** allows users to search for real-time weather data by 
 
 - **Django** (Backend framework, User authentication, Database)
 - **FastAPI** (API for fetching weather data)
-- **PostgreSQL** (Database for storing weather search history)
-- **HTML, CSS, JavaScritpt** (Frontend for UI)
+- **HTML, CSS** (Frontend for UI)
 - **OpenWeather API - possibly** (External service for real-time weather)
-- **Vercel** (Frontend hosting)
+- **Railway** (Frontend hosting)
 
 ## Deployment
 
