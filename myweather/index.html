@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="static/css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Weather Dashboard</h2>
+      <form method="POST">
+        {% csrf_token %}
+        <label for="city-state"
+          >Enter City and State (e.g., Atlanta, Georgia):</label
+        >
+        <input
+          type="text"
+          id="city-state"
+          name="city-state"
+          placeholder="Enter city, state"
+          required
+        />
+        <button type="submit">Get Weather</button>
+      </form>
+
+      {% if error_message %}
+      <p>{{ error_message }}</p>
+      {% elif weather_data %}
+      <div>
+        <h3>
+          Weather in {{ weather_data.name }}, {{ weather_data.sys.country }}
+        </h3>
+        <p>Temperature: {{ weather_data.main.temp }}°F</p>
+        <p>Condition: {{ weather_data.weather.0.description }}</p>
+        <p>Wind Speed: {{ weather_data.wind.speed }} m/s</p>
+      </div>
+      {% endif %}
+    </div>
+    <footer>
+      <p><i>Project by Milton Rosa</i></p>
+    </footer>
+  </body>
+</html>
