@@ -8,7 +8,8 @@ This **Weather Dashboard** allows users to search for real-time weather data by 
 - **FastAPI** (API for fetching weather data)
 - **HTML, CSS** (Frontend for UI)
 - **OpenWeather API - possibly** (External service for real-time weather)
-- **Railway** (Frontend hosting)
+- **Netlify** (Frontend hosting)
+- **Railway** (Backend Hosting)
 
 ## Deployment
 
