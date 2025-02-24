@@ -18,7 +18,6 @@ def index(request):
                 city = city_state_parts[0].strip()
                 state = city_state_parts[1].strip()
 
-                # Make the API call using city and state
                 api_key = os.getenv("API_KEY")
                 url = f"http://api.openweathermap.org/data/2.5/weather?q={city},{state}&appid={api_key}&units=imperial"
 
